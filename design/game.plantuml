@@ -2,33 +2,46 @@
 
 Game "1" *-- "*" Player
 Game "1" *-- "3" Card
+Game "1" *-- "*" Weapon
 Player "1" *-- "*" Card
-Room "1" *-- "?" Player
+Player "1" *-- "1" Room
+Controller "1" *-- "1" Game
 
 class Game {
 players
+weapons: Map<Weapon, Room>
 winningCards
 activePlayer
-rooms
-movePlayer()
-guess()
-...()
+turnOrder
 }
 
 class Player {
 character
 cards
+room
 messageChannel
 }
 
-class Card {
+enum Weapon {
 name
-iconUrl
 }
 
-class Room {
+enum Card {
 name
-player
+iconUrl
+type
+}
+
+enum Room {
+name
+type
+}
+
+class Controller {
+game
+movePlayer()
+guess()
+...()
 }
 
 @enduml
