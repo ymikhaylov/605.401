@@ -1,0 +1,49 @@
+@startuml
+
+participant "active player" as player1
+participant "other players" as player2
+
+player1 -> server: create game
+player1 <- server: created
+
+player1 -> server: join game
+player1 <- server: joined
+
+player1 -> server: select character
+player1 <- server: character selected
+
+player1 <- server: game start
+player1 <- server: dealt cards
+
+loop 
+player1 <- server: start turn
+
+player1 -> server: move
+player1 <- server: moved
+
+player1 -> server: guess
+player1 <- server: guessed
+
+alt
+player2 <- server: ask for card
+player2 -> server: show card
+player1 <- server: card shown
+else
+player1 <- server: no card
+end
+
+player1 -> server: end turn
+end
+
+player1 -> server: accuse
+alt
+player1 <- server: win
+else
+player1 <- server: loose
+end
+
+group on error
+player1 <- server: error
+end
+
+@enduml
