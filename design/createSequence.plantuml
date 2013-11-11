@@ -1,0 +1,8 @@
+@startuml
+
+Client --> Server: POST /game
+Server --> Game: create()
+Server --> Client: game_id
+
+@enduml
+

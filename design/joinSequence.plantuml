@@ -1,0 +1,14 @@
+@startuml
+
+Client --> Server: GET /game
+Client <-- Server: list of games
+Client --> Server: GET /game/game_id
+Client --> Server: ws:/game/game_id
+Server --> Controller: new
+Server --> Controller: onJoin()
+Controller --> Player: new
+Controller --> Game: addPlayer()
+Controller --> Client: joined
+
+@enduml
+
