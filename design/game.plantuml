@@ -44,6 +44,7 @@ class Player {
 character: Character
 cards: Card[]
 room: Room
+socket: Socket
 }
 
 enum Character {

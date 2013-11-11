@@ -1,0 +1,11 @@
+@startuml
+
+"Guesser(Client)" --> Controller: onSuggest()
+Controller --> Game: getTurnOrder()
+Controller --> Player: getCards()
+Controller --> Player: getClientSocket()
+Controller --> Client: ask for card
+Client --> Controller: show card
+Controller --> "Guesser(Client)": show chard
+
+@enduml
