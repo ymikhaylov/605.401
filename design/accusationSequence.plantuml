@@ -1,0 +1,8 @@
+@startuml
+
+Client --> Controller: onAccuse()
+Controller --> Game: getWinningCards()
+Controller --> Controller: broadcast()
+Controller --> Clients: winner OR looser
+
+@enduml
