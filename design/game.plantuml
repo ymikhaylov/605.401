@@ -3,44 +3,85 @@
 Game "1" *-- "*" Player
 Game "1" *-- "3" Card
 Game "1" *-- "*" Weapon
+Game "1" *-- "1" GameState
 Player "1" *-- "*" Card
-Player "1" *-- "1" Room
-Controller "1" *-- "1" Game
+Player "*" *-- "1" Room
+Player "1" *-- "1" Character
+Card "*" *-- "1" CardType
+Controller "*" *-- "1" Game
+Controller "*" *-- "1" Player
+
+note as N1
+  • All attributes
+    have getter methods,
+    which are not shown.
+  • All classes
+    perform initialization
+    when they are created.
+end note
 
 class Game {
-players
+MAX_PLAYERS: int
+players: Player[]
 weapons: Map<Weapon, Room>
-winningCards
-activePlayer
-turnOrder
+winningCards: Card[]
+activePlayer: Player
+turnOrder: Player[]
+state: GameState
+getNumberOfPlayers()
+<u>create()
+suffleDealAndStart()
+}
+
+enum GameState {
+JOINING
+IN_PROGRESS
+FINISHED
 }
 
 class Player {
-character
-cards
-room
-messageChannel
+character: Character
+cards: Card[]
+room: Room
+}
+
+enum Character {
+name: String
+iconUrl: String
 }
 
 enum Weapon {
-name
+name: String
+iconUrl: String
 }
 
 enum Card {
-name
-iconUrl
-type
+name: String
+iconUrl: String
+type: CardType
+}
+
+enum CardType {
+WEAPON
+ROOM
+CHARACTER
 }
 
 enum Room {
-name
-type
+name: String
+type: {Room, Hall}
+connections: Room[]
+isConnectedTo(Room): boolean
 }
 
 class Controller {
-game
-movePlayer()
-guess()
+game: Game
+from: Player
+socket: Socket
+broadcast()
+onJoin()
+onMove()
+onGuess()
 ...()
 }
 
