@@ -28,9 +28,10 @@ winningCards: Card[]
 activePlayer: Player
 turnOrder: Player[]
 state: GameState
-getNumberOfPlayers()
 <u>create()
+getNumberOfPlayers(): int
 suffleDealAndStart()
+isOccupied(Room): boolean
 }
 
 enum GameState {
