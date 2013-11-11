@@ -1,0 +1,12 @@
+@startuml
+
+Client --> Controller: onMove()
+Controller --> Player: getLocation()
+Controller --> Room: isConnectedTo()
+Controller --> Game: isOccupied()
+Controller --> Room: getType()
+Controller --> Player: setLocation()
+Controller --> Controller: broadcast()
+Controller --> Client: moved
+
+@enduml
